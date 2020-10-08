@@ -6,7 +6,7 @@ $(document).ready(function() {
     const windEl = $(".wind");
     const uvIndexEl = $(".uv-index");
 
-    // WHEN I search for a city
+    
     $("#search-button").on("click", function(event) {
         event.preventDefault();
 
@@ -18,6 +18,7 @@ $(document).ready(function() {
         console.log(cityInputEl);
 
         citySearch(cityInputEl);
+        forecast(cityInputEl);
 
         let cityResultsDivEl = $("<div>").attr("class", "city-results-tile");
 
@@ -25,6 +26,7 @@ $(document).ready(function() {
         cityTileEl.append(cityResultsDivEl);
     })
 
+    // Function to search for the current weather of the city and display results in main section
     function citySearch(input) {
         let apiKey = "cda0734d46f3ec29600ebac5178a0156";
         let queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + apiKey + "&q=" + input;
@@ -32,7 +34,6 @@ $(document).ready(function() {
         $.ajax({
             url: queryURL,
             method: "GET"
-            // THEN I am presented with current and future conditions for that city and that city is added to the search history
         }).then(function(response) {
             console.log(response);
             
@@ -53,10 +54,28 @@ $(document).ready(function() {
         })
     };
 
+    // Function to search for the forecast of the city and display results
+    function forecast(input) {
+        let apiKey = "cda0734d46f3ec29600ebac5178a0156";
+        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + input;
 
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            
+        }).then(function(response) {
+            console.log(response);
 
+            $("#forecast").text(response);
+            
 
+        })
 
+    };
+})
+
+// WHEN I search for a city
+// THEN I am presented with current and future conditions for that city and that city is added to the search history
 // WHEN I view current weather conditions for that city
 // THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
 // WHEN I view the UV index
@@ -67,8 +86,3 @@ $(document).ready(function() {
 // THEN I am again presented with current and future conditions for that city
 // WHEN I open the weather dashboard
 // THEN I am presented with the last searched city forecast
-
-
-
-
-})
