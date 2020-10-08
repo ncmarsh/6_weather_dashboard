@@ -22,24 +22,31 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4">
-         <!-- Search Form -->
-         <div>Search for a City:</div>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputSearch" class="sr-only">Search</label>
-                <input type="password" class="form-control" id="inputSearch" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
-            </form>
-      </div>
-      <div class="card col-md-8">
-
-      </div>
+        <!-- Search Form -->
+        <div>Search for a City:</div>
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputSearch" id="search-field" class="sr-only">Search</label>
+              <input type="text" class="form-control" id="inputSearch" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
+          </form>
+          <!-- Section to append each city link as they are created -->
+        </div>
+      <!-- Card to show current city -->
+      <main class="card col-md-8">
+        <div class="city"></div>
+        <div class="temp"></div>
+        <div class="humidity"></div>
+        <div class="wind"></div>
+        <div class="uv-index"></div>
+      </main>
+      <!-- 5 day forecast underneath -->
     </div>
   </div>
-  <!-- Section to append each city link -->
-  <!-- Card to show current city -->
-  <!-- 5 day forecast underneath -->
+ 
+  
+  
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
