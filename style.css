@@ -9,6 +9,14 @@
     text-align: center;
 }
 
-.card {
+#current-weather {
     height: 300px;
+}
+
+.forecast {
+    width: 100px;
+    height: 150px;
+    border: 1px solid black;
+    float: left;
+    margin-right: 10px;
 }
