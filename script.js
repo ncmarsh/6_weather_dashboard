@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    const dateEl = moment().format("l");
     const cityEl = $(".city");
     const tempEl = $(".temp");
     const humidityEl = $(".humidity");
@@ -38,13 +39,16 @@ $(document).ready(function() {
             // Formula to convert Kelvin into Fahrenheit
             let kelvinTemp = response.main.temp;
             let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
+
+            let meterSpeed = response.wind.speed;
+            let mphSpeed = meterSpeed * 2.237;
     
-            cityEl.text(response.name);
+            cityEl.text(response.name + " " + "(" + dateEl + ")");
             // add degree symbol
-            tempEl.text("Temperature: " + fahrenheitTemp.toFixed() + " F");
+            tempEl.text("Temperature: " + fahrenheitTemp.toFixed(1) + " F");
             humidityEl.text("Humidity: " + response.main.humidity + "%");
             // If I can switch it to imperial then it will be mph
-            windEl.text("Wind Speed: " + response.wind.speed + " m/s");
+            windEl.text("Wind Speed: " + mphSpeed.toFixed(1) + " MPH");
             // uvIndexEl.text("UV Index: " + response.)
         })
     };
