@@ -66,7 +66,34 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
 
-            $("#forecast").text(response);
+            // Formula to convert Kelvin into Fahrenheit
+            // let kelvinTemp = response.main.temp;
+            // let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
+
+            // $("#forecast-group").text(response);
+
+            console.log(response.list[0].main.temp);
+            console.log(response.list[0].main.humidity);
+
+
+            for (let i = 0; i < 5; i++) {
+                let forecastDivEl = $("<div>");
+
+                let forecastDateEl = $("<div>").text(moment().add(i + 1, "days").format("l"));
+                let forecastTempEl = $("<div>").text("Temp: " + response.list[i].main.temp + " F");
+                let forecastHumidityEl = $("<div>").text("Humidity: " + response.list[i].main.humidity + " %");
+                
+                forecastDivEl.attr("class", "card forecast");
+
+                $("#future-forecast").text("5 Day Forecast:");
+
+                $("#forecast-group").append(forecastDivEl);
+                forecastDivEl.append(forecastDateEl);
+                forecastDivEl.append(forecastTempEl);
+                forecastDivEl.append(forecastHumidityEl);
+
+                
+            }
             
 
         })
