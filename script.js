@@ -5,30 +5,51 @@ $(document).ready(function() {
     const windEl = $(".wind");
     const uvIndexEl = $(".uv-index");
 
-    // let cityInputEl = $("#search-field").val();
-    let cityInputEl = "Seattle";
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=cda0734d46f3ec29600ebac5178a0156&q=" + cityInputEl;
-
     // WHEN I search for a city
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-        // THEN I am presented with current and future conditions for that city and that city is added to the search history
-    }).then(function(response) {
-        console.log(response);
+    $("#search-button").on("click", function(event) {
+        event.preventDefault();
 
-        let kelvinTemp = response.main.temp;
-        let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
+        console.log("search");
 
-        cityEl.text(response.name);
-        // add degree symbol
-        tempEl.text("Temperature: " + fahrenheitTemp + " F");
-        humidityEl.text("Humidity: " + response.main.humidity + " %");
-        // If I can switch it to imperial then it will be mph
-        windEl.text("Wind Speed: " + response.wind.speed + " m/s");
-        // uvIndexEl.text("UV Index: " + response.)
-        
+        let cityInputEl = $("#search-field").val();
+        let cityTileEl = $("#city-tile");
+
+        console.log(cityInputEl);
+
+        citySearch(cityInputEl);
+
+        let cityResultsDivEl = $("<div>").attr("class", "city-results-tile");
+
+        cityResultsDivEl.text(cityInputEl);
+        cityTileEl.append(cityResultsDivEl);
     })
+
+    function citySearch(input) {
+        let apiKey = "cda0734d46f3ec29600ebac5178a0156";
+        let queryURL = "https://api.openweathermap.org/data/2.5/weather?appid=" + apiKey + "&q=" + input;
+
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+            // THEN I am presented with current and future conditions for that city and that city is added to the search history
+        }).then(function(response) {
+            console.log(response);
+            
+            // Formula to convert Kelvin into Fahrenheit
+            let kelvinTemp = response.main.temp;
+            let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
+    
+            cityEl.text(response.name);
+            // add degree symbol
+            tempEl.text("Temperature: " + fahrenheitTemp.toFixed() + " F");
+            humidityEl.text("Humidity: " + response.main.humidity + "%");
+            // If I can switch it to imperial then it will be mph
+            windEl.text("Wind Speed: " + response.wind.speed + " m/s");
+            // uvIndexEl.text("UV Index: " + response.)
+        })
+    };
+
+
 
 
 
