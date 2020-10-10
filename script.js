@@ -93,6 +93,13 @@ $(document).ready(function() {
             cityTileBtnEl.text(retrCities[i].cityName).attr("id", retrCities[i].cityName);
             $("#city-tile").append(cityTileBtnEl);
         }
+        
+        // Takes the most recent city located in recent-search in localStorage and sets new variable
+        let recentCity = localStorage.getItem("recent-search");
+        // Then takes that most recent city and runs the citySearch function
+        citySearch(recentCity);
+        // And the 5 day forecast function
+        forecast(recentCity);
     }
 
     // When a city is entered and the search button is clicked
@@ -114,9 +121,12 @@ $(document).ready(function() {
         cityResultsDivEl.text(cityInputEl).attr("id", cityInputEl);
         cityTileEl.append(cityResultsDivEl);
 
-        // Sets to localStorage
+        // Sets each searched city to localStorage array
         searchedCitiesArr.push({cityName: cityInputEl});
         localStorage.setItem("cities-searched", JSON.stringify(searchedCitiesArr));
+
+        // Sets the last searched city into separate localStorage object
+        localStorage.setItem("recent-search", cityInputEl);
 
         // Clears search bar
         $("#search-field").val("");
@@ -129,6 +139,9 @@ $(document).ready(function() {
         citySearch(this.id);
         // Function for 5 day forecast
         forecast(this.id);
+
+        // Sets the last searched city into localStorage
+        localStorage.setItem("recent-search", this.id);
     })
 })
 
