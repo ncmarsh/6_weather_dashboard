@@ -6,24 +6,29 @@ $(document).ready(function() {
     const windEl = $(".wind");
     const uvIndexEl = $(".uv-index");
 
-    
+    let searchedCitiesArr = JSON.parse(localStorage.getItem("cities-searched")) || [];
+
+    // When a city is entered and the search button is clicked
     $("#search-button").on("click", function(event) {
         event.preventDefault();
-
-        console.log("search");
 
         let cityInputEl = $("#search-field").val();
         let cityTileEl = $("#city-tile");
 
         console.log(cityInputEl);
-
+        
+        // Function to search for the current weather
         citySearch(cityInputEl);
+        // Function to search for the 5 day forecast
         forecast(cityInputEl);
 
-        let cityResultsDivEl = $("<div>").attr("class", "city-results-tile");
+        let cityResultsDivEl = $("<button>").attr("class", "city-results-tile");
 
-        cityResultsDivEl.text(cityInputEl);
+        cityResultsDivEl.text(cityInputEl).attr("id", cityInputEl);
         cityTileEl.append(cityResultsDivEl);
+
+        searchedCitiesArr.push({cityName: cityInputEl});
+        localStorage.setItem("cities-searched", JSON.stringify(searchedCitiesArr));
     })
 
     // Function to search for the current weather of the city and display results in main section
@@ -43,6 +48,8 @@ $(document).ready(function() {
 
             let meterSpeed = response.wind.speed;
             let mphSpeed = meterSpeed * 2.237;
+
+            $("#current-weather").attr("class", "card");
     
             cityEl.text(response.name + " " + "(" + dateEl + ")");
             // add degree symbol
@@ -66,21 +73,20 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
 
-            // Formula to convert Kelvin into Fahrenheit
-            // let kelvinTemp = response.main.temp;
-            // let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
-
-            // $("#forecast-group").text(response);
-
             console.log(response.list[0].main.temp);
             console.log(response.list[0].main.humidity);
 
+            $("#forecast-group").text("");
 
             for (let i = 0; i < 5; i++) {
+                // Formula to convert Kelvin into Fahrenheit
+                let kelvinTemp = response.list[i].main.temp;
+                let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
+
                 let forecastDivEl = $("<div>");
 
                 let forecastDateEl = $("<div>").text(moment().add(i + 1, "days").format("l"));
-                let forecastTempEl = $("<div>").text("Temp: " + response.list[i].main.temp + " F");
+                let forecastTempEl = $("<div>").text("Temp: " + fahrenheitTemp.toFixed(2) + " F");
                 let forecastHumidityEl = $("<div>").text("Humidity: " + response.list[i].main.humidity + " %");
                 
                 forecastDivEl.attr("class", "card forecast");
@@ -91,13 +97,8 @@ $(document).ready(function() {
                 forecastDivEl.append(forecastDateEl);
                 forecastDivEl.append(forecastTempEl);
                 forecastDivEl.append(forecastHumidityEl);
-
-                
             }
-            
-
         })
-
     };
 })
 
