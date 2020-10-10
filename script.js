@@ -8,29 +8,6 @@ $(document).ready(function() {
 
     let searchedCitiesArr = JSON.parse(localStorage.getItem("cities-searched")) || [];
 
-    // When a city is entered and the search button is clicked
-    $("#search-button").on("click", function(event) {
-        event.preventDefault();
-
-        let cityInputEl = $("#search-field").val();
-        let cityTileEl = $("#city-tile");
-
-        console.log(cityInputEl);
-        
-        // Function to search for the current weather
-        citySearch(cityInputEl);
-        // Function to search for the 5 day forecast
-        forecast(cityInputEl);
-
-        let cityResultsDivEl = $("<button>").attr("class", "city-results-tile");
-
-        cityResultsDivEl.text(cityInputEl).attr("id", cityInputEl);
-        cityTileEl.append(cityResultsDivEl);
-
-        searchedCitiesArr.push({cityName: cityInputEl});
-        localStorage.setItem("cities-searched", JSON.stringify(searchedCitiesArr));
-    })
-
     // Function to search for the current weather of the city and display results in main section
     function citySearch(input) {
         let apiKey = "cda0734d46f3ec29600ebac5178a0156";
@@ -100,7 +77,62 @@ $(document).ready(function() {
             }
         })
     };
+
+    // If the high score list is available, then the scoreStoreArr is retrieved from local storage
+    // Take scores from local storage, store as retrScores variable
+    let retrCities = JSON.parse(localStorage.getItem("cities-searched"));
+    console.log(retrCities);
+
+    // If scores are available, they will be sorted by highest to lowest
+    if (retrCities === null) {
+        console.log("null");
+    } else {
+        // Takes each object and creates buttons
+        for (let i = 0; i < retrCities.length; i++) {
+            let cityTileBtnEl = $("<button>").attr("class", "city-results-tile");
+            
+            cityTileBtnEl.text(retrCities[i].cityName).attr("id", retrCities[i].cityName);
+            $("#city-tile").append(cityTileBtnEl);
+        }
+    }
+
+
+    // When a city is entered and the search button is clicked
+    $("#search-button").on("click", function(event) {
+        event.preventDefault();
+
+        let cityInputEl = $("#search-field").val();
+        let cityTileEl = $("#city-tile");
+
+        console.log(cityInputEl);
+        
+        // Function to search for the current weather
+        citySearch(cityInputEl);
+        // Function to search for the 5 day forecast
+        forecast(cityInputEl);
+
+        let cityResultsDivEl = $("<button>").attr("class", "city-results-tile");
+
+        cityResultsDivEl.text(cityInputEl).attr("id", cityInputEl);
+        cityTileEl.append(cityResultsDivEl);
+
+        searchedCitiesArr.push({cityName: cityInputEl});
+        localStorage.setItem("cities-searched", JSON.stringify(searchedCitiesArr));
+
+        $("#search-field").val("");
+    })
+
+    // When a city tile is clicked, then we get info from local storage, then the search function will trigger again
+    $(document).on("click", ".city-results-tile", function(event) {
+
+        citySearch(this.id);
+        forecast(this.id);
+    })
 })
+
+
+
+
 
 // WHEN I search for a city
 // THEN I am presented with current and future conditions for that city and that city is added to the search history
