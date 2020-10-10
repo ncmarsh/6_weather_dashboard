@@ -4,6 +4,10 @@
     padding: 1.5rem;
 }
 
+.container {
+    margin: auto;
+}
+
 /* Searched cities stack up on left */
 .city-results-tile {
     border: 1px solid black;
