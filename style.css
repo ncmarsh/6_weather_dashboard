@@ -1,22 +1,26 @@
+/* Header */
 .jumbotron {
     text-align: center;
     padding: 1.5rem;
 }
 
+/* Searched cities stack up on left */
 .city-results-tile {
     border: 1px solid black;
     width: 90%;
     text-align: center;
 }
 
+/* Current weather card */
 #current-weather {
     height: 300px;
 }
 
+/* 5 day forecast cards */
 .forecast {
-    width: 100px;
+    width: 110px;
     height: 150px;
     border: 1px solid black;
     float: left;
-    margin-right: 10px;
+    margin-right: 15px;
 }
