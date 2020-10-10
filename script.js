@@ -78,16 +78,15 @@ $(document).ready(function() {
         })
     };
 
-    // If the high score list is available, then the scoreStoreArr is retrieved from local storage
-    // Take scores from local storage, store as retrScores variable
+    // searchedCitiesArr is retrieved from localStorage and parsed into retrCities variable
     let retrCities = JSON.parse(localStorage.getItem("cities-searched"));
     console.log(retrCities);
 
-    // If scores are available, they will be sorted by highest to lowest
+    // If cities-searched are available
     if (retrCities === null) {
         console.log("null");
     } else {
-        // Takes each object and creates buttons
+        // Takes each object and creates buttons in the city tile column
         for (let i = 0; i < retrCities.length; i++) {
             let cityTileBtnEl = $("<button>").attr("class", "city-results-tile");
             
@@ -95,7 +94,6 @@ $(document).ready(function() {
             $("#city-tile").append(cityTileBtnEl);
         }
     }
-
 
     // When a city is entered and the search button is clicked
     $("#search-button").on("click", function(event) {
@@ -106,9 +104,9 @@ $(document).ready(function() {
 
         console.log(cityInputEl);
         
-        // Function to search for the current weather
+        // Function for current weather
         citySearch(cityInputEl);
-        // Function to search for the 5 day forecast
+        // Function for 5 day forecast
         forecast(cityInputEl);
 
         let cityResultsDivEl = $("<button>").attr("class", "city-results-tile");
@@ -116,16 +114,20 @@ $(document).ready(function() {
         cityResultsDivEl.text(cityInputEl).attr("id", cityInputEl);
         cityTileEl.append(cityResultsDivEl);
 
+        // Sets to localStorage
         searchedCitiesArr.push({cityName: cityInputEl});
         localStorage.setItem("cities-searched", JSON.stringify(searchedCitiesArr));
 
+        // Clears search bar
         $("#search-field").val("");
     })
 
     // When a city tile is clicked, then we get info from local storage, then the search function will trigger again
     $(document).on("click", ".city-results-tile", function(event) {
 
+        // Function for current weather
         citySearch(this.id);
+        // Function for 5 day forecast
         forecast(this.id);
     })
 })
