@@ -21,6 +21,10 @@ $(document).ready(function() {
 
             // Function to find UV index based off the lat/long of the returned user input
             findUVIndex(response);
+
+            let weatherIcon = response.weather[0].icon;
+            let iconLink = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + ".png");
+            console.log(iconLink);
             
             // Formula to convert Kelvin into Fahrenheit
             let kelvinTemp = response.main.temp;
@@ -33,6 +37,7 @@ $(document).ready(function() {
             $("#current-weather").attr("class", "card");
     
             cityEl.text(response.name + " " + "(" + dateEl + ")");
+            cityEl.append(iconLink);
             // add degree symbol
             tempEl.text("Temperature: " + fahrenheitTemp.toFixed(1) + " F");
             humidityEl.text("Humidity: " + response.main.humidity + "%");
@@ -58,6 +63,9 @@ $(document).ready(function() {
             $("#forecast-group").text("");
 
             for (let i = 0; i < 5; i++) {
+                let weatherIcon = response.list[i].weather[0].icon;
+                let iconLink = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + ".png");
+
                 // Formula to convert Kelvin into Fahrenheit
                 let kelvinTemp = response.list[i].main.temp;
                 let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
@@ -69,11 +77,13 @@ $(document).ready(function() {
                 let forecastHumidityEl = $("<div>").text("Humidity: " + response.list[i].main.humidity + " %");
                 
                 forecastDivEl.attr("class", "card forecast");
+                iconLink.attr("class", "forecast-icon");
 
                 $("#future-forecast").text("5 Day Forecast:");
 
                 $("#forecast-group").append(forecastDivEl);
                 forecastDivEl.append(forecastDateEl);
+                forecastDivEl.append(iconLink);
                 forecastDivEl.append(forecastTempEl);
                 forecastDivEl.append(forecastHumidityEl);
             }
@@ -92,9 +102,6 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
-            console.log(cityLong);
-            console.log(cityLat); 
-            console.log("yes");
 
             uvIndexEl.text("UV Index: " + response.value);
         })

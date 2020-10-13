@@ -22,9 +22,15 @@
 
 /* 5 day forecast cards */
 .forecast {
-    width: 110px;
+    width: 105px;
     height: 150px;
     border: 1px solid black;
     float: left;
     margin-right: 15px;
+}
+
+.forecast-icon {
+    /* align-items: center; */
+    width: 2.5rem;
+    height: 2.5rem;
 }
