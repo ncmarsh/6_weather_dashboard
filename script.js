@@ -18,11 +18,15 @@ $(document).ready(function() {
             method: "GET"
         }).then(function(response) {
             console.log(response);
+
+            // Function to find UV index based off the lat/long of the returned user input
+            findUVIndex(response);
             
             // Formula to convert Kelvin into Fahrenheit
             let kelvinTemp = response.main.temp;
             let fahrenheitTemp = (kelvinTemp - 273.15) * 1.80 + 32;
 
+            // Formula to convert m/s to mph
             let meterSpeed = response.wind.speed;
             let mphSpeed = meterSpeed * 2.237;
 
@@ -32,9 +36,7 @@ $(document).ready(function() {
             // add degree symbol
             tempEl.text("Temperature: " + fahrenheitTemp.toFixed(1) + " F");
             humidityEl.text("Humidity: " + response.main.humidity + "%");
-            // If I can switch it to imperial then it will be mph
             windEl.text("Wind Speed: " + mphSpeed.toFixed(1) + " MPH");
-            // uvIndexEl.text("UV Index: " + response.)
         })
     };
 
@@ -78,6 +80,26 @@ $(document).ready(function() {
         })
     };
 
+    // Function to find UV index based off the lat/long of the returned user input
+    function findUVIndex(response) {
+        let apiKey = "cda0734d46f3ec29600ebac5178a0156";
+        let cityLong = response.coord.lon;
+        let cityLat = response.coord.lat;
+        let uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLong + "&appid=" + apiKey;
+    
+        $.ajax({
+            url: uvIndexURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+            console.log(cityLong);
+            console.log(cityLat); 
+            console.log("yes");
+
+            uvIndexEl.text("UV Index: " + response.value);
+        })
+    }
+  
     // searchedCitiesArr is retrieved from localStorage and parsed into retrCities variable
     let retrCities = JSON.parse(localStorage.getItem("cities-searched"));
     console.log(retrCities);
