@@ -24,7 +24,6 @@ $(document).ready(function() {
 
             let weatherIcon = response.weather[0].icon;
             let iconLink = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + ".png");
-            console.log(iconLink);
             
             // Formula to convert Kelvin into Fahrenheit
             let kelvinTemp = response.main.temp;
@@ -48,10 +47,10 @@ $(document).ready(function() {
     // Function to search for the forecast of the city and display results
     function forecast(input) {
         let apiKey = "cda0734d46f3ec29600ebac5178a0156";
-        let queryURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + input;
+        let forecastURL = "https://api.openweathermap.org/data/2.5/forecast?appid=" + apiKey + "&q=" + input;
 
         $.ajax({
-            url: queryURL,
+            url: forecastURL,
             method: "GET"
             
         }).then(function(response) {
@@ -106,20 +105,19 @@ $(document).ready(function() {
             let uvIndex = response.value;
             console.log(uvIndex);
 
-            // uvIndex.attr("class", "uv-rating");
-            uvIndexEl.text("UV Index: " + uvIndex);
+            $("#uv-rating").text(uvIndex);
 
             // If else statement to determine level of uv index and add associated styling
             if (uvIndex >= 0 && uvIndex <= 2) {
-                uvIndexEl.removeClass().addClass("uv-index uv-low");
+                $("#uv-rating").removeClass().addClass("uv-index uv-low");
             } else if (uvIndex > 2 && uvIndex <= 5) {
-                uvIndexEl.removeClass().addClass("uv-index uv-medium");
+                $("#uv-rating").removeClass().addClass("uv-index uv-medium");
             } else if (uvIndex > 5 && uvIndex <= 7) {
-                uvIndexEl.removeClass().addClass("uv-index uv-high");
+                $("#uv-rating").removeClass().addClass("uv-index uv-high");
             } else if (uvIndex > 7 && uvIndex <= 10) {
-                uvIndexEl.removeClass().addClass("uv-index uv-very-high");
+                $("#uv-rating").removeClass().addClass("uv-index uv-very-high");
             } else {
-                uvIndexEl.removeClass().addClass("uv-index uv-extreme");
+                $("#uv-rating").removeClass().addClass("uv-index uv-extreme");
             }
         })
     }
