@@ -2,6 +2,16 @@
 .jumbotron {
     text-align: center;
     padding: 1.5rem;
+    background-color: #4d4e4f;
+    color: #ffffff;
+}
+
+.display-4 {
+    font-weight: 400;
+}
+
+body {
+    background-color: #e4e4e4;
 }
 
 .container {
@@ -10,27 +20,70 @@
 
 /* Searched cities stack up on left */
 .city-results-tile {
-    border: 1px solid black;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
     width: 90%;
     text-align: center;
+    background-color: #c2cff1;
+    color: #000000;
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
 
 /* Current weather card */
 #current-weather {
     height: 300px;
+    margin-bottom: 10px;
+    line-height: 300%;
+    padding-top: 1%;
+    padding-left: 2%;
+}
+
+/* UV Index classes */
+.uv-index {
+    border-radius: 15px;
+    width: 18%;
+}
+
+.uv-low {
+    background-color: #0FFC07;
+}
+
+.uv-medium {
+    background-position: right;
+    background-color: #FCFC07;
+}
+
+.uv-high {
+    background-color: #FC8A07;
+    color: #ffffff;
+}
+
+.uv-very-high {
+    background-color: #c74949;
+    color: #ffffff;
+}
+
+.uv-extreme {
+    background-color: #8107FC;
+    color: #ffffff;
 }
 
 /* 5 day forecast cards */
 .forecast {
     width: 105px;
     height: 150px;
-    border: 1px solid black;
     float: left;
     margin-right: 15px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    background-color: #238bbb;
+    color: #ffffff;
 }
 
 .forecast-icon {
-    /* align-items: center; */
+    margin-top: 5px;
+    margin-bottom: 20px;
     width: 2.5rem;
     height: 2.5rem;
 }

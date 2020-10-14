@@ -38,8 +38,8 @@ $(document).ready(function() {
     
             cityEl.text(response.name + " " + "(" + dateEl + ")");
             cityEl.append(iconLink);
-            // add degree symbol
-            tempEl.text("Temperature: " + fahrenheitTemp.toFixed(1) + " F");
+            
+            tempEl.html("Temperature: " + fahrenheitTemp.toFixed(1) + " &deg;F");
             humidityEl.text("Humidity: " + response.main.humidity + "%");
             windEl.text("Wind Speed: " + mphSpeed.toFixed(1) + " MPH");
         })
@@ -73,7 +73,7 @@ $(document).ready(function() {
                 let forecastDivEl = $("<div>");
 
                 let forecastDateEl = $("<div>").text(moment().add(i + 1, "days").format("l"));
-                let forecastTempEl = $("<div>").text("Temp: " + fahrenheitTemp.toFixed(2) + " F");
+                let forecastTempEl = $("<div>").html("Temp: " + fahrenheitTemp.toFixed(2) + " &deg;F");
                 let forecastHumidityEl = $("<div>").text("Humidity: " + response.list[i].main.humidity + " %");
                 
                 forecastDivEl.attr("class", "card forecast");
@@ -103,7 +103,24 @@ $(document).ready(function() {
         }).then(function(response) {
             console.log(response);
 
-            uvIndexEl.text("UV Index: " + response.value);
+            let uvIndex = response.value;
+            console.log(uvIndex);
+
+            // uvIndex.attr("class", "uv-rating");
+            uvIndexEl.text("UV Index: " + uvIndex);
+
+            // If else statement to determine level of uv index and add associated styling
+            if (uvIndex >= 0 && uvIndex <= 2) {
+                uvIndexEl.removeClass().addClass("uv-index uv-low");
+            } else if (uvIndex > 2 && uvIndex <= 5) {
+                uvIndexEl.removeClass().addClass("uv-index uv-medium");
+            } else if (uvIndex > 5 && uvIndex <= 7) {
+                uvIndexEl.removeClass().addClass("uv-index uv-high");
+            } else if (uvIndex > 7 && uvIndex <= 10) {
+                uvIndexEl.removeClass().addClass("uv-index uv-very-high");
+            } else {
+                uvIndexEl.removeClass().addClass("uv-index uv-extreme");
+            }
         })
     }
   
