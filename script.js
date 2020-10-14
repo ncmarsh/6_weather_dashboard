@@ -95,7 +95,7 @@ $(document).ready(function() {
         let apiKey = "cda0734d46f3ec29600ebac5178a0156";
         let cityLong = response.coord.lon;
         let cityLat = response.coord.lat;
-        let uvIndexURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLong + "&appid=" + apiKey;
+        let uvIndexURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + cityLat + "&lon=" + cityLong + "&appid=" + apiKey;
     
         $.ajax({
             url: uvIndexURL,
