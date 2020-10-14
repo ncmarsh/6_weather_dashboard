@@ -37,7 +37,6 @@ $(document).ready(function() {
             $("#current-weather").attr("class", "card");
             
             cityEl.text(response.name + " " + "(" + dateEl + ")");
-            cityEl.show();
             cityEl.append(iconLink);
             
             tempEl.html("Temperature: " + fahrenheitTemp.toFixed(1) + " &deg;F");
@@ -80,7 +79,7 @@ $(document).ready(function() {
                 forecastDivEl.attr("class", "card forecast");
                 iconLink.attr("class", "forecast-icon");
 
-                $("#future-forecast").show();
+                $("#future-forecast").text("5 Day Forecast:");
 
                 $("#forecast-group").append(forecastDivEl);
                 forecastDivEl.append(forecastDateEl);

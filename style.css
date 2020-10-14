@@ -39,10 +39,6 @@ body {
     padding-left: 2%;
 }
 
-.city {
-    display: hide;
-}
-
 /* UV Index classes */
 .uv-index {
     border-radius: 15px;
