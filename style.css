@@ -40,7 +40,7 @@ body {
 }
 
 .city {
-    display: none;
+    display: hide;
 }
 
 /* UV Index classes */
@@ -75,7 +75,7 @@ body {
 
 /* 5 day forecast cards */
 #future-forecast {
-    display: none;
+    display: hide;
 }
 
 .forecast {
