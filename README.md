@@ -5,7 +5,7 @@
 
 Keep track of the weather forecast using this Weather Dashboard!
 
-<!-- ![Screenshot](assets/screenshot.png) -->
+![Screenshot](assets/screenshot.png)
 
 ## Table of Contents
 
@@ -47,6 +47,7 @@ Keep track of the weather forecast using this Weather Dashboard!
 
 - [Weather Dashboard](https://ncmarsh.github.io/6_weather_dashboard/)
 - [Project Repository](https://github.com/ncmarsh/6_weather_dashboard)
+- [OpenWeatherMap API](https://openweathermap.org/guide)
 
 ### Contributing
 

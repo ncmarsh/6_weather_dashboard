@@ -70,10 +70,6 @@ body {
 }
 
 /* 5 day forecast cards */
-#future-forecast {
-    display: hide;
-}
-
 .forecast {
     width: 105px;
     height: 150px;
