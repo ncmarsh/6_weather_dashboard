@@ -39,6 +39,10 @@ body {
     padding-left: 2%;
 }
 
+.city {
+    display: none;
+}
+
 /* UV Index classes */
 .uv-index {
     border-radius: 15px;
@@ -70,6 +74,10 @@ body {
 }
 
 /* 5 day forecast cards */
+#future-forecast {
+    display: none;
+}
+
 .forecast {
     width: 105px;
     height: 150px;

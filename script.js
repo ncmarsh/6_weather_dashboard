@@ -35,8 +35,9 @@ $(document).ready(function() {
             let mphSpeed = meterSpeed * 2.237;
 
             $("#current-weather").attr("class", "card");
-    
+            
             cityEl.text(response.name + " " + "(" + dateEl + ")");
+            cityEl.show();
             cityEl.append(iconLink);
             
             tempEl.html("Temperature: " + fahrenheitTemp.toFixed(1) + " &deg;F");
@@ -79,7 +80,7 @@ $(document).ready(function() {
                 forecastDivEl.attr("class", "card forecast");
                 iconLink.attr("class", "forecast-icon");
 
-                $("#future-forecast").text("5 Day Forecast:");
+                $("#future-forecast").show();
 
                 $("#forecast-group").append(forecastDivEl);
                 forecastDivEl.append(forecastDateEl);
