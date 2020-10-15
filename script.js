@@ -61,6 +61,7 @@ $(document).ready(function() {
 
             $("#forecast-group").text("");
 
+            // For loop to create the 5 day forecast cards and add response information
             for (let i = 0; i < 5; i++) {
                 let weatherIcon = response.list[i].weather[0].icon;
                 let iconLink = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + ".png");
@@ -126,11 +127,11 @@ $(document).ready(function() {
     let retrCities = JSON.parse(localStorage.getItem("cities-searched"));
     console.log(retrCities);
 
-    // If cities-searched are available
+    // As long as there are cities available in localStorage, then 
     if (retrCities === null) {
         console.log("null");
     } else {
-        // Takes each object and creates buttons in the city tile column
+        // For loop to take each object and create a button into the city tile column
         for (let i = 0; i < retrCities.length; i++) {
             let cityTileBtnEl = $("<button>").attr("class", "city-results-tile");
             
@@ -155,9 +156,9 @@ $(document).ready(function() {
 
         console.log(cityInputEl);
         
-        // Function for current weather
+        // Function to search for the current weather
         citySearch(cityInputEl);
-        // Function for 5 day forecast
+        // Function to search for the 5 day forecast
         forecast(cityInputEl);
 
         let cityResultsDivEl = $("<button>").attr("class", "city-results-tile");
@@ -176,32 +177,15 @@ $(document).ready(function() {
         $("#search-field").val("");
     })
 
-    // When a city tile is clicked, then we get info from local storage, then the search function will trigger again
+    // When a city tile is clicked, then we run that city in the search functions
     $(document).on("click", ".city-results-tile", function(event) {
 
-        // Function for current weather
+        // Function to search for the current weather
         citySearch(this.id);
-        // Function for 5 day forecast
+        // Function to search for the 5 day forecast
         forecast(this.id);
 
         // Sets the last searched city into localStorage
         localStorage.setItem("recent-search", this.id);
     })
 })
-
-
-
-
-
-// WHEN I search for a city
-// THEN I am presented with current and future conditions for that city and that city is added to the search history
-// WHEN I view current weather conditions for that city
-// THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-// WHEN I view future weather conditions for that city
-// THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-// WHEN I click on a city in the search history
-// THEN I am again presented with current and future conditions for that city
-// WHEN I open the weather dashboard
-// THEN I am presented with the last searched city forecast
