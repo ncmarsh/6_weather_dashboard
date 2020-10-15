@@ -40,7 +40,7 @@ body {
 }
 
 /* UV Index classes */
-.uv-index {
+#uv-rating {
     border-radius: 10px;
     padding: 5px 10px;
 }
