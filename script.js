@@ -63,7 +63,7 @@ $(document).ready(function() {
 
             for (let i = 0; i < 5; i++) {
                 let weatherIcon = response.list[i].weather[0].icon;
-                let iconLink = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + ".png");
+                let iconLink = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + ".png");
 
                 // Formula to convert Kelvin into Fahrenheit
                 let kelvinTemp = response.list[i].main.temp;
