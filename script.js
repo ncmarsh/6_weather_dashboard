@@ -23,7 +23,7 @@ $(document).ready(function() {
             findUVIndex(response);
 
             let weatherIcon = response.weather[0].icon;
-            let iconLink = $("<img>").attr("src", "http://openweathermap.org/img/wn/" + weatherIcon + ".png");
+            let iconLink = $("<img>").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + ".png");
             
             // Formula to convert Kelvin into Fahrenheit
             let kelvinTemp = response.main.temp;
