@@ -18,6 +18,11 @@ body {
     margin: auto;
 }
 
+/* Search button */
+#search-button {
+    margin-top: 0.5rem;
+}
+
 /* Searched cities stack up on left */
 .city-results-tile {
     border: 1px solid #ffffff;
@@ -40,6 +45,14 @@ body {
 }
 
 /* UV Index classes */
+.hide {
+    display: none;
+}
+
+.show {
+    display:block;
+}
+
 #uv-rating {
     border-radius: 10px;
     padding: 5px 10px;

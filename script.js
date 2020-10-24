@@ -106,6 +106,7 @@ $(document).ready(function() {
             let uvIndex = response.value;
             console.log(uvIndex);
 
+            uvIndexEl.removeClass("hide").addClass("show");
             $("#uv-rating").text(uvIndex);
 
             // If else statement to determine level of uv index and add associated styling

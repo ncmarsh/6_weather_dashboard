@@ -29,8 +29,9 @@
               <div class="form-group mx-sm-3 mb-2">
                 <label for="search-field" class="sr-only">Search</label>
                 <input type="text" class="form-control" id="search-field" placeholder="Search">
+                <button type="submit" id="search-button" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
               </div>
-              <button type="submit" id="search-button" class="btn btn-primary mb-2"><i class="fas fa-search"></i></button>
+              
             </form>
         </div>
         <!-- Section to append each city link as they are created -->
@@ -45,7 +46,7 @@
           <div class="temp"></div>
           <div class="humidity"></div>
           <div class="wind"></div>
-          <div class="uv-index">UV Index: <span id="uv-rating"></span></div>
+          <div class="uv-index hide">UV Index: <span id="uv-rating"></span></div>
         </div>
         <!-- 5 day forecast underneath -->
         <h3 id="future-forecast"> </h3>
