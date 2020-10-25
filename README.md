@@ -15,6 +15,7 @@ Keep track of the weather forecast using this Weather Dashboard!
 1. [Demo](#Demo)
 1. [Roadmap](#Roadmap)
 1. [Links](#Links)
+1. [Contact](#Contact)
 1. [Contributing](#Contributing)
 1. [License](#License)
 
@@ -74,11 +75,15 @@ To further this project, I would like to add a delete button to each city so the
 - [Project Repository](https://github.com/ncmarsh/6_weather_dashboard)
 - [OpenWeatherMap API](https://openweathermap.org/guide)
 
-### Contributing
+## Contact
+
+- Nicole Marshall - [@ncmarsh](https://github.com/ncmarsh)
+
+## Contributing
 
 This is a personal project; no contributions are required at this time.
 
-### License
+## License
 
 No license granted.
 
